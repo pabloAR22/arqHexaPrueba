@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Application\UseCases\User\GetAllProductsUseCase;
 use Illuminate\Http\Request;
 
 class ProductosController extends Controller
@@ -10,8 +11,9 @@ class ProductosController extends Controller
      * Display a listing of the resource.
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(GetAllProductsUseCase $useCase)
     {
+        return $useCase->execute();
     }
 
     public function find() {

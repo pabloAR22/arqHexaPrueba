@@ -19,7 +19,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::prefix('productos')->group(function () {
+Route::prefix('products')->group(function () {
     Route::get('', [ProductosController::class, 'index']);
     Route::post('', [ProductosController::class, 'store']);
     Route::get('/{id}', [ProductosController::class, 'find']);
