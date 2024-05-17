@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Application\UseCases\User\GetAllProductsUseCase;
 use Illuminate\Http\Request;
 
-class ProductosController extends Controller
+class ProductsController extends Controller
 {
     /**
      * Display a listing of the resource.

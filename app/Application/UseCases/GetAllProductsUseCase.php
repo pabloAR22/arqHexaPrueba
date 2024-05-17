@@ -7,7 +7,7 @@ use App\Core\Repositories\ProductsRepository;
 class GetAllProductsUseCase {
     private $productsRepository;
 
-    public function __construct(ProductosRepository $productsRepository)
+    public function __construct(ProductsRepository $productsRepository)
     {
         $this->productsRepository = $productsRepository;
     }
