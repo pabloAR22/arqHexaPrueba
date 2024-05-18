@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Application\UseCases\Productos;
+namespace App\Application\UseCases\Products;
 
 use App\Core\Repositories\ProductsRepository;
 
-class GetAllProductsUseCase {
+class UpdateProductsUseCase {
     private $productsRepository;
 
     public function __construct(ProductsRepository $productsRepository)
@@ -12,7 +12,7 @@ class GetAllProductsUseCase {
         $this->productsRepository = $productsRepository;
     }
 
-    public function execute() {
-        return $this->productsRepository->getAll();
+    public function execute($id, $productData) {
+        return $this->productsRepository->update($id, $productData);
     }
 }
