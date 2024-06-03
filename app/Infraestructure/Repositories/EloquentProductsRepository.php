@@ -13,7 +13,21 @@ class EloquentProductsRepository implements ProductsRepository {
     }
 
     public function getAll() {
-        return Product::all();
+        // return Product::all();
+
+        $availableProducts = Product::where('stock', '>=', '1')->get();
+        $availableProductsList = [];
+
+        foreach ($availableProducts as $product) {
+            $availableProductsList[] = [
+                'name' => $product->name,
+                'stock' => $product->stock,
+                'price' => $product->price,
+                'created_at' => $product->created_at,
+            ];
+        }
+
+        return $availableProductsList;
     }
 
     public function create($productData) {

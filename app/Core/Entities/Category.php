@@ -5,7 +5,7 @@ namespace App\Core\Entities;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Product extends Model
+class Category extends Model
 {
     use HasFactory;
 
@@ -15,13 +15,11 @@ class Product extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
-        'price',
-        'stock'
+        'name'
     ];
 
-    public function categories()
+    public function products()
     {
-        return $this->belongsToMany(Category::class, 'products_categories');
+        return $this->belongsToMany(Product::class, 'products_categories');
     }
 }
