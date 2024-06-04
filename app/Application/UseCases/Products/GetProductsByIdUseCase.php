@@ -12,7 +12,7 @@ class GetProductsByIdUseCase {
         $this->productsRepository = $productsRepository;
     }
 
-    public function execute() {
+    public function execute(int $id) {
         return $this->productsRepository->findById($id);
     }
 }

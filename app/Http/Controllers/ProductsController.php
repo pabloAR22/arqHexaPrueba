@@ -16,9 +16,10 @@ class ProductsController extends Controller
      * Display a listing of the resource.
      * @return \Illuminate\Http\Response
      */
-    public function index(GetAllProductsUseCase $useCase)
+    public function index(Request $request, GetAllProductsUseCase $useCase)
     {
-        return $useCase->execute();
+        $filters = $request->only(['price']);
+        return $useCase->execute($filters);
     }
 
     public function find(int $id, GetProductsByIdUseCase $useCase)

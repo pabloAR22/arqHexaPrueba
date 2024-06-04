@@ -12,7 +12,7 @@ class GetAllProductsUseCase {
         $this->productsRepository = $productsRepository;
     }
 
-    public function execute() {
-        return $this->productsRepository->getAll();
+    public function execute(array $filters) {
+        return $this->productsRepository->getAll($filters);
     }
 }

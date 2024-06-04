@@ -4,18 +4,23 @@ namespace App\Infraestructure\Repositories;
 
 use App\Core\Contracts\ExternalAdapterContract;
 use App\Core\Entities\Product;
+use App\Core\Entities\products_x_categories;
 use App\Core\Repositories\ProductsRepository;
 
 class EloquentProductsRepository implements ProductsRepository {
 
-    public function findById(int $id) {
+    public function findById($id) {
          return Product::find($id);
     }
 
-    public function getAll() {
-        // return Product::all();
+    public function getAll( array $filters) {
+        $query = Product::where('stock', '>=', '1');
 
-        $availableProducts = Product::where('stock', '>=', '1')->get();
+        if (isset($filters['price'])) {
+            $query->where('price', '=', $filters['price']);
+        }
+
+        $availableProducts = $query->get();
         $availableProductsList = [];
 
         foreach ($availableProducts as $product) {
@@ -38,6 +43,13 @@ class EloquentProductsRepository implements ProductsRepository {
         ]);
 
         $product->save();
+
+        $categories = new products_x_categories([
+            'id_product' => $product->id,
+            'id_category' => $productData->categories
+        ]);
+
+        $categories->save();
 
         return $product;
     }

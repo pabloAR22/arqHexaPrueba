@@ -12,6 +12,7 @@ class CreateProductsRequest extends FormRequest
             'name' => 'required|string|max:255',
             'price' => 'required|numeric|',
             'stock' => 'required|numeric|min:1',
+            'categories' => 'integer|exists:categories,id',
         ];
     }
 }

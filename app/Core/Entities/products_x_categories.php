@@ -5,21 +5,18 @@ namespace App\Core\Entities;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Category extends Model
+class products_x_categories extends Model
 {
     use HasFactory;
 
+    protected $table = "products_x_category";
     /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
      */
     protected $fillable = [
-        'name'
+        'id_product',
+        'id_category'
     ];
-
-    public function products()
-    {
-        return $this->belongsToMany(Product::class, 'products_categories', 'id_category', 'id_product');
-    }
 }

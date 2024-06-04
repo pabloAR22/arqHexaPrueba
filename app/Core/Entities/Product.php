@@ -20,8 +20,20 @@ class Product extends Model
         'stock'
     ];
 
+    public function scopeCategory($query, $id_category)
+    {
+        return $query->whereHas('categories', function ($q) use ($id_category) {
+            $q->where('categories.id', $categoryId);
+        });
+    }
+
+    public function scopePrice($query, $price)
+    {
+        return $query->where('price', '=', $price);
+    }
+
     public function categories()
     {
-        return $this->belongsToMany(Category::class, 'products_categories');
+        return $this->belongsToMany(Category::class, 'products_categories', 'id_category', 'id_product');
     }
 }
